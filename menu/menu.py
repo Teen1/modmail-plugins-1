@@ -25,6 +25,8 @@ class Menu(commands.Cog):
             message = DummyMessage(copy.copy(initial_message))
             message.author = self.bot.modmail_guild.me
             message.content = menu_config['content']
+            genesis = thread.recipient.genesis_message
+            await genesis.delete()
             msg, _ = await thread.reply(message, anonymous=True)
             for r in menu_config['options']:
                 await msg.add_reaction(r)
